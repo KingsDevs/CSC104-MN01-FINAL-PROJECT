@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csc104oop.shelves.MainController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="743.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="CSC 104 - MN01 Final Project/Shelf ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="25.0" />
+         </padding>
+      </HBox>
+      <GridPane layoutY="64.0" prefHeight="469.0" prefWidth="737.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="576.0" minWidth="10.0" prefWidth="551.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="10.0" prefWidth="192.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="428.0" minHeight="10.0" prefHeight="419.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView fx:id="shelfTable" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="bookTitleCol" prefWidth="129.0" resizable="false" text="Book Title" />
+                <TableColumn fx:id="authorCol" prefWidth="135.0" resizable="false" text="Author" />
+                  <TableColumn fx:id="genreCol" prefWidth="96.0" resizable="false" text="Genre" />
+                  <TableColumn fx:id="dateReleasedCol" prefWidth="106.0" resizable="false" text="Date Released" />
+                  <TableColumn fx:id="pagesCol" prefWidth="109.0" resizable="false" text="Pages" />
+              </columns>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </TableView>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0" GridPane.columnIndex="1">
+               <children>
+                  <VBox prefHeight="40.0" prefWidth="219.0">
+                     <children>
+                        <Label text="Book Title">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="bookTitleField" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="40.0" prefWidth="219.0">
+                     <children>
+                        <Label text="Author">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="authorField" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="40.0" prefWidth="219.0">
+                     <children>
+                        <Label text="Genre">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="genreChoiceBox" prefHeight="25.0" prefWidth="248.0" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="40.0" prefWidth="219.0">
+                     <children>
+                        <Label text="Date Released">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="dateReleasedDatePicker" prefHeight="25.0" prefWidth="256.0" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="40.0" prefWidth="219.0">
+                     <children>
+                        <Label text="Pages">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="pagesField" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="219.0" spacing="95.0">
+                     <children>
+                        <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addBook" text="Add" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" top="25.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deleteBook" text="Delete" />
+                  <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateBook" text="Update" />
+               </children>
+               <padding>
+                  <Insets left="8.0" />
+               </padding>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
