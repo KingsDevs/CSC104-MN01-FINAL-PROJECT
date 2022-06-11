@@ -161,9 +161,34 @@ public class MainController implements Initializable
 
     }
 
-    @FXML
-    void addBook(ActionEvent event) {
 
+    @FXML
+    void addBook(ActionEvent event) 
+    {
+        String bookTitle = bookTitleField.getText();
+        String bookAuthor = authorField.getText();
+        String bookGenre = genreChoiceBox.getValue();
+        String bookDateReleased = dateReleasedDatePicker.getValue().toString();
+        String strBookNumPages = pagesField.getText();
+        
+        if(!((bookTitle.isBlank() || bookTitle.isEmpty())
+          && (bookAuthor.isBlank() || bookTitle.isEmpty())
+          && (bookGenre.isBlank() || bookTitle.isEmpty())
+          && (bookDateReleased.isBlank() || bookTitle.isEmpty())
+          && (strBookNumPages.isBlank() || strBookNumPages.isEmpty())
+          ))
+        {
+            int bookNumPages = Integer.parseInt(strBookNumPages);
+            Book newBook = new Book(0, bookTitle, bookAuthor, bookDateReleased, bookGenre, bookNumPages);
+
+            try {
+                Book.insertBook(newBook);
+                updateTable();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+        }
     }
 
     @FXML

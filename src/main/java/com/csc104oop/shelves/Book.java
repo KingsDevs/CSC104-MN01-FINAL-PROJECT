@@ -83,7 +83,7 @@ public class Book
         
     }
 
-    private static void insertBook(Book book) throws IOException
+    public static void insertBook(Book book) throws IOException
     {
         String sql = "INSERT INTO shelf (book_title, book_author, book_genre, book_date_released, book_numpages) ";
         sql += "VALUES(?,?,?,?,?)";
