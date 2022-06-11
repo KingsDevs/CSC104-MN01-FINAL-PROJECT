@@ -12,7 +12,7 @@ public class ConnectDb
     private static Connection conn;
     private static Statement statement;
 
-    public Statement getStatement() throws SQLException, IOException 
+    public static Statement getStatement() throws SQLException, IOException 
     {
         if(statement == null)
         {
@@ -22,11 +22,11 @@ public class ConnectDb
         return statement;
     }
 
-    public Connection getConnection() throws IOException 
+    public static Connection getConnection() throws IOException 
     {
         if(conn == null)
         {
-            String dbUrl = App.getApplicationPath() + "localdb.db";
+            String dbUrl = App.getApplicationPath() + "/db/database.db";
             try {
                 conn = DriverManager.getConnection("jdbc:sqlite:/" + dbUrl);
             } catch (SQLException e) {
