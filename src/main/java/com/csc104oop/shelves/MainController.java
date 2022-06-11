@@ -82,6 +82,24 @@ public class MainController implements Initializable
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        deleteBtn.setDisable(true);
+        updateBtn.setDisable(true);
+
+        shelfTable.getSelectionModel().selectedIndexProperty().addListener(
+            (obs , oldSelection, newSelection) ->  {
+                if(newSelection != null)
+                {
+                    deleteBtn.setDisable(false);
+                    updateBtn.setDisable(false);
+                }
+                else
+                {
+                    deleteBtn.setDisable(true);
+                    updateBtn.setDisable(true);
+                }
+            }
+        );
         
     }
 
