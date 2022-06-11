@@ -184,6 +184,10 @@ public class MainController implements Initializable
             try {
                 Book.insertBook(newBook);
                 updateTable();
+
+                bookTitleField.setText("");
+                authorField.setText("");
+                pagesField.setText("");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -208,6 +212,8 @@ public class MainController implements Initializable
                 try {
                     Book.deleteBook(bookId);
                     updateTable();
+
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
