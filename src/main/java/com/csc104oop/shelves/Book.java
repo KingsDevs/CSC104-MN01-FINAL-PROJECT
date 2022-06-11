@@ -68,7 +68,7 @@ public class Book
 
     public static void deleteBook(int id) throws IOException
     {
-        String sql = "DELETE FROM shelf WHERE id = ?";
+        String sql = "DELETE FROM shelf WHERE book_id = ?";
         
         Connection conn = ConnectDb.getConnection();
         PreparedStatement preparedStatement;

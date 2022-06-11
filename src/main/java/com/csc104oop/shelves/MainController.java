@@ -2,12 +2,15 @@ package com.csc104oop.shelves;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
@@ -110,7 +113,27 @@ public class MainController implements Initializable
     }
 
     @FXML
-    void deleteBook(ActionEvent event) {
+    void deleteBook(ActionEvent event) throws IOException, SQLException
+    {
+        Book selectedBook = shelfTable.getSelectionModel().getSelectedItem();
+        
+        int bookId = selectedBook.getId();
+        System.out.println(bookId);
+
+        Alert confirmToDelete = new Alert(AlertType.CONFIRMATION);
+        confirmToDelete.setContentText("Are you sure to delete this book?");
+
+        confirmToDelete.showAndWait().ifPresent(response -> {
+            if(response == ButtonType.OK)
+            {
+                try {
+                    Book.deleteBook(bookId);
+                    updateTable();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
