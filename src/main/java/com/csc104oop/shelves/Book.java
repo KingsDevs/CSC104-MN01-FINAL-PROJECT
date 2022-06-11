@@ -83,4 +83,25 @@ public class Book
         
     }
 
+    private static void insertBook(Book book) throws IOException
+    {
+        String sql = "INSERT INTO shelf (book_title, book_author, book_genre, book_date_released, book_numpages) ";
+        sql += "VALUES(?,?,?,?,?)";
+
+        Connection conn = ConnectDb.getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, book.getTitle());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setString(3, book.getGenre());
+            preparedStatement.setString(4, book.getDateReleased());
+            preparedStatement.setInt(5, book.getPages());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+    }
+
 }
