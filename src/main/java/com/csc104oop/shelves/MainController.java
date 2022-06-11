@@ -50,7 +50,7 @@ public class MainController implements Initializable
     private Button deleteBtn;
 
     @FXML
-    private ChoiceBox<?> genreChoiceBox;
+    private ChoiceBox<String> genreChoiceBox;
 
     @FXML
     private TableColumn<Book, String> genreCol;
@@ -82,6 +82,30 @@ public class MainController implements Initializable
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        genreChoiceBox.getItems().add("Action and Adventure");
+        genreChoiceBox.getItems().add("Classics");
+        genreChoiceBox.getItems().add("Graphic Novel");
+        genreChoiceBox.getItems().add("Detective and Mystery");
+        genreChoiceBox.getItems().add("Fantasy");
+        genreChoiceBox.getItems().add("Historical Fiction");
+        genreChoiceBox.getItems().add("Horror");
+        genreChoiceBox.getItems().add("Literary Fiction");
+        genreChoiceBox.getItems().add("Romance");
+        genreChoiceBox.getItems().add("Science Fiction");
+        genreChoiceBox.getItems().add("Short Stories");
+        genreChoiceBox.getItems().add("Suspense and Thrillers");
+        genreChoiceBox.getItems().add("Women's Fiction");
+        genreChoiceBox.getItems().add("Biographies and Autobiographies");
+        genreChoiceBox.getItems().add("Cookbooks");
+        genreChoiceBox.getItems().add("Essays");
+        genreChoiceBox.getItems().add("History");
+        genreChoiceBox.getItems().add("Memoir");
+        genreChoiceBox.getItems().add("Poetry");
+        genreChoiceBox.getItems().add("Self-Help");
+        genreChoiceBox.getItems().add("True Crime");
+        
+
 
         deleteBtn.setDisable(true);
         updateBtn.setDisable(true);
