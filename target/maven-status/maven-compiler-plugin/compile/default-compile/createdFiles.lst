@@ -1,3 +1,5 @@
+com\csc104oop\shelves\Book.class
+com\csc104oop\shelves\ConnectDb.class
 com\csc104oop\shelves\SecondaryController.class
 module-info.class
 com\csc104oop\shelves\PrimaryController.class

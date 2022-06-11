@@ -2,6 +2,8 @@ package com.csc104oop.shelves;
 
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,6 +64,23 @@ public class Book
         ResultSet resultSet = statement.executeQuery(sql);
 
         return resultSet;
+    }
+
+    public static void deleteBook(int id) throws IOException
+    {
+        String sql = "DELETE FROM shelf WHERE id = ?";
+        
+        Connection conn = ConnectDb.getConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+        
     }
 
 }

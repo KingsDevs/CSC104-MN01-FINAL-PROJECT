@@ -1,33 +1,44 @@
 package com.csc104oop.shelves;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
-public class MainController {
+public class MainController implements Initializable
+{
 
     @FXML
     private Button addBtn;
 
     @FXML
-    private TableColumn<?, ?> authorCol;
+    private TableColumn<Book, String> authorCol;
 
     @FXML
     private TextField authorField;
 
     @FXML
-    private TableColumn<?, ?> bookTitleCol;
+    private TableColumn<Book, String> bookTitleCol;
 
     @FXML
     private TextField bookTitleField;
 
     @FXML
-    private TableColumn<?, ?> dateReleasedCol;
+    private TableColumn<Book, String> dateReleasedCol;
 
     @FXML
     private DatePicker dateReleasedDatePicker;
@@ -39,21 +50,59 @@ public class MainController {
     private ChoiceBox<?> genreChoiceBox;
 
     @FXML
-    private TableColumn<?, ?> genreCol;
+    private TableColumn<Book, String> genreCol;
 
     @FXML
-    private TableColumn<?, ?> pagesCol;
+    private TableColumn<Book, Integer> pagesCol;
 
     @FXML
     private TextField pagesField;
 
     @FXML
-    private TableView<?> shelfTable;
+    private TableView<Book> shelfTable;
 
     @FXML
     private Button updateBtn;
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) 
+    {
+        bookTitleCol.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
+        authorCol.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
+        dateReleasedCol.setCellValueFactory(new PropertyValueFactory<Book, String>("dateReleased"));
+        genreCol.setCellValueFactory(new PropertyValueFactory<Book, String>("genre"));
+        pagesCol.setCellValueFactory(new PropertyValueFactory<Book, Integer>("pages"));
+
+        try {
+            updateTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+
+    private void updateTable() throws SQLException, IOException
+    {
+        ObservableList<Book> shelf = shelfTable.getItems();
+        shelf.clear();
+
+        ResultSet resultSet = Book.getBooksFromShelf();
+        while (resultSet.next()) 
+        {
+            Book book = new Book(
+                                 resultSet.getInt("book_id"), 
+                                 resultSet.getString("book_title"), 
+                                 resultSet.getString("book_author"), 
+                                 resultSet.getString("book_date_released"), 
+                                 resultSet.getString("book_genre"), 
+                                 resultSet.getInt("book_numpages"));
+            
+            shelf.add(book);
+        }
+
+
+    }
 
     @FXML
     void addBook(ActionEvent event) {
