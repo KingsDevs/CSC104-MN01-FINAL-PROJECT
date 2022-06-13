@@ -9,10 +9,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class Update implements Initializable
 {
@@ -36,6 +40,7 @@ public class Update implements Initializable
     private TextField pagesField;
 
     private Book book;
+    private MainController mainController;
 
     public void setBook(Book book)
     {
@@ -46,6 +51,11 @@ public class Update implements Initializable
         pagesField.setText(book.getPages().toString());
         genreChoiceBox.setValue(book.getGenre());
         dateReleasedDatePicker.setValue(LocalDate.parse(book.getDateReleased()));
+    }
+
+    public void setMainController(MainController mainController)
+    {
+        this.mainController = mainController;
     }
 
     @Override
@@ -86,13 +96,32 @@ public class Update implements Initializable
     }
 
     @FXML
-    void addBook(ActionEvent event) {
+    void addBook(ActionEvent event) 
+    {
+        Alert confirmToUpdate = new Alert(AlertType.CONFIRMATION);
+        confirmToUpdate.setContentText("Are you sure to update this book?");
 
+        confirmToUpdate.showAndWait().ifPresent(response -> {
+            if(response == ButtonType.OK)
+            {
+                try {
+                    Book.updateBook(book);
+                    mainController.updateTable();
+
+                    cancel(event);
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @FXML
-    void cancel(ActionEvent event) {
-
+    void cancel(ActionEvent event) 
+    {
+        Stage stage =  (Stage)addBtn.getScene().getWindow();
+        stage.close();
     }
 
    

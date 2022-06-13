@@ -104,4 +104,32 @@ public class Book
         }
     }
 
+    public static void updateBook(Book book) throws IOException
+    {
+        String sql = "UPDATE shelf SET book_title = ?, "
+                   + "book_author = ?, book_genre = ?, "
+                   + "book_date_released = ?, book_numpages = ? "
+                   + "WHERE book_id = ?";
+
+        Connection conn = ConnectDb.getConnection();
+        PreparedStatement preparedStatement;
+
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, book.getTitle());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setString(3, book.getGenre());
+            preparedStatement.setString(4, book.getDateReleased());
+            preparedStatement.setInt(5, book.getPages());
+            preparedStatement.setInt(6, book.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+    }
+
 }
+
+

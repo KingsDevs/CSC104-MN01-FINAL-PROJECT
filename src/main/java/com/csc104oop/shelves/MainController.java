@@ -144,7 +144,7 @@ public class MainController implements Initializable
         
     }
 
-    private void updateTable() throws SQLException, IOException
+    public void updateTable() throws SQLException, IOException
     {
         ObservableList<Book> shelf = shelfTable.getItems();
         shelf.clear();
@@ -237,6 +237,8 @@ public class MainController implements Initializable
 
         Update updateController = loader.getController();
         updateController.setBook(selectedBook);
+        MainController mainController = this;
+        updateController.setMainController(mainController);
 
         Stage updateStage = new Stage();
         updateStage.setTitle("Update");
