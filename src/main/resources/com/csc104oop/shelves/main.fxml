@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.csc104oop.shelves.MainController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="743.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
@@ -42,7 +41,7 @@
             <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="shelfTable" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="shelfTable" editable="true" prefHeight="200.0" prefWidth="200.0">
               <columns>
                 <TableColumn fx:id="bookTitleCol" prefWidth="129.0" resizable="false" text="Book Title" />
                 <TableColumn fx:id="authorCol" prefWidth="135.0" resizable="false" text="Author" />

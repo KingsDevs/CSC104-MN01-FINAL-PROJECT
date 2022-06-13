@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import java.net.URL;
+
 /**
  * JavaFX App
  */
@@ -38,6 +40,13 @@ public class App extends Application {
         String path = new File(".").getCanonicalPath();
         System.out.println(path);
         return path;
+    }
+
+    public static URL loadFxml(String fxmlName)
+    {
+        URL fileUrl = App.class.getResource(fxmlName + ".fxml");
+        return fileUrl;
+        
     }
 
     public static void main(String[] args) throws IOException

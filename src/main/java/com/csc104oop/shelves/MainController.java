@@ -1,7 +1,10 @@
 package com.csc104oop.shelves;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -12,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -223,9 +228,27 @@ public class MainController implements Initializable
     }
 
     @FXML
-    void updateBook(ActionEvent event) {
+    void updateBook(ActionEvent event) throws IOException 
+    {
+        Book selectedBook = shelfTable.getSelectionModel().getSelectedItem();
 
+        FXMLLoader loader = new FXMLLoader(App.loadFxml("updatedialog"));
+        Parent root = loader.load();
+
+        Update updateController = loader.getController();
+        updateController.setBook(selectedBook);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Update");
+
+        Scene updateScene = new Scene(root);
+        updateStage.setScene(updateScene);
+
+        updateStage.initModality(Modality.WINDOW_MODAL);
+        updateStage.initOwner(updateBtn.getScene().getWindow());
+        updateStage.show();
     }
+}
     
 
-}
+
