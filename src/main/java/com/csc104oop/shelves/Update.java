@@ -95,6 +95,21 @@ public class Update implements Initializable
         });
     }
 
+    private void updateBookInstance()
+    {
+        String bookTitle = bookTitleField.getText();
+        String bookAuthor = authorField.getText();
+        String bookGenre = genreChoiceBox.getValue();
+        String bookDateReleased = dateReleasedDatePicker.getValue().toString();
+        String strBookNumPages = pagesField.getText();
+
+        book.setTitle(bookTitle);
+        book.setAuthor(bookAuthor);
+        book.setGenre(bookGenre);
+        book.setDateReleased(bookDateReleased);
+        book.setPages(Integer.parseInt(strBookNumPages));
+    }
+
     @FXML
     void addBook(ActionEvent event) 
     {
@@ -104,7 +119,9 @@ public class Update implements Initializable
         confirmToUpdate.showAndWait().ifPresent(response -> {
             if(response == ButtonType.OK)
             {
+                updateBookInstance();
                 try {
+
                     Book.updateBook(book);
                     mainController.updateTable();
 

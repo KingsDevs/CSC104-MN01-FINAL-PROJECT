@@ -56,6 +56,31 @@ public class Book
         return pages;
     }
 
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setAuthor(String author)
+    {
+        this.author = author;
+    }
+
+    public void setDateReleased(String dateReleased)
+    {
+        this.dateReleased = dateReleased;
+    }
+
+    public void setGenre(String genre)
+    {
+        this.genre = genre;
+    }
+
+    public void setPages(int pages)
+    {
+        this.pages = pages;
+    }
+
     public static ResultSet getBooksFromShelf() throws SQLException, IOException
     {
         String sql = "SELECT * FROM shelf";
