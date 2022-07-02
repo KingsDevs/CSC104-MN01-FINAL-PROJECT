@@ -6,5 +6,6 @@ com\csc104oop\shelves\PrimaryController.class
 com\csc104oop\shelves\Book.class
 com\csc104oop\shelves\MainController$1.class
 module-info.class
+com\csc104oop\shelves\Main.class
 com\csc104oop\shelves\App.class
 com\csc104oop\shelves\MainController.class
